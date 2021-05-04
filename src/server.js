@@ -6,19 +6,10 @@ const notFounErrorHandler = require('./error-handlers/404.js');
 const foodRouter = require('./routes/food.js');
 
 
+
 const express=require('express');
 const app = express();
-
-
-const logger = require('./middleware/logger');
-const validat = require('./middleware/validator');
-
-
-
-// app.use(logger); //not working after the routs
-// app.use(validat);
 app.use(express.json());
-
 app.use(foodRouter); // attach  routes module to the app obj
 // app.use('/food',foodRouter); 
 // app.use('/clothes',foodRouter);
