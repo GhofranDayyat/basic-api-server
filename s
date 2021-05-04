@@ -59,7 +59,7 @@
           _server: null,
           parser: null,
           _httpMessage: [ClientRequest],
-          [Symbol(asyncId)]: 434,
+          [Symbol(asyncId)]: 87,
           [Symbol(kHandle)]: [TCP],
           [Symbol(kSetNoDelay)]: true,
           [Symbol(lastWriteQueueSize)]: 0,
@@ -91,7 +91,7 @@
           _server: null,
           parser: null,
           _httpMessage: [ClientRequest],
-          [Symbol(asyncId)]: 434,
+          [Symbol(asyncId)]: 87,
           [Symbol(kHandle)]: [TCP],
           [Symbol(kSetNoDelay)]: true,
           [Symbol(lastWriteQueueSize)]: 0,
@@ -110,24 +110,21 @@
         headers: {
           'x-powered-by': 'Express',
           'content-type': 'application/json; charset=utf-8',
-          'content-length': '2',
-          etag: 'W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"',
-          date: 'Tue, 04 May 2021 15:51:48 GMT',
-          connection: 'close'
+          date: 'Tue, 04 May 2021 19:36:08 GMT',
+          connection: 'close',
+          'content-length': '0'
         },
         rawHeaders: [
           'X-Powered-By',
           'Express',
           'Content-Type',
           'application/json; charset=utf-8',
-          'Content-Length',
-          '2',
-          'ETag',
-          'W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"',
           'Date',
-          'Tue, 04 May 2021 15:51:48 GMT',
+          'Tue, 04 May 2021 19:36:08 GMT',
           'Connection',
-          'close'
+          'close',
+          'Content-Length',
+          '0'
         ],
         trailers: {},
         rawTrailers: [],
@@ -157,7 +154,7 @@
           _server: null,
           parser: null,
           _httpMessage: [ClientRequest],
-          [Symbol(asyncId)]: 434,
+          [Symbol(asyncId)]: 87,
           [Symbol(kHandle)]: [TCP],
           [Symbol(kSetNoDelay)]: true,
           [Symbol(lastWriteQueueSize)]: 0,
@@ -182,30 +179,32 @@
           chunkedEncoding: false,
           shouldKeepAlive: false,
           _defaultKeepAlive: true,
-          useChunkedEncodingByDefault: false,
+          useChunkedEncodingByDefault: true,
           sendDate: false,
           _removedConnection: false,
           _removedContLen: false,
           _removedTE: false,
-          _contentLength: 0,
+          _contentLength: 35,
           _hasBody: true,
           _trailer: '',
           finished: true,
           _headerSent: true,
           socket: [Socket],
           connection: [Socket],
-          _header: 'GET /food HTTP/1.1\r\n' +
-            'Host: 127.0.0.1:36235\r\n' +
+          _header: 'PUT /food/:id HTTP/1.1\r\n' +
+            'Host: 127.0.0.1:44161\r\n' +
             'Accept-Encoding: gzip, deflate\r\n' +
+            'Content-Type: application/json\r\n' +
+            'Content-Length: 35\r\n' +
             'Connection: close\r\n' +
             '\r\n',
           _keepAliveTimeout: 0,
           _onPendingData: [Function: noopPendingOutput],
           agent: [Agent],
           socketPath: undefined,
-          method: 'GET',
+          method: 'PUT',
           insecureHTTPParser: undefined,
-          path: '/food',
+          path: '/food/:id',
           _ended: true,
           res: [Circular],
           aborted: false,
@@ -221,7 +220,7 @@
           [Symbol(corked)]: 0,
           [Symbol(kOutHeaders)]: [Object: null prototype]
         },
-        text: '[]',
+        text: '',
         [Symbol(kCapture)]: false
       },
       request: Test {
@@ -231,10 +230,10 @@
         _enableHttp2: false,
         _agent: false,
         _formData: null,
-        method: 'GET',
-        url: 'http://127.0.0.1:36235/food',
-        _header: {},
-        header: {},
+        method: 'PUT',
+        url: 'http://127.0.0.1:44161/food/:id',
+        _header: { 'content-type': 'application/json' },
+        header: { 'Content-Type': 'application/json' },
         writable: true,
         _redirects: 0,
         _maxRedirects: 0,
@@ -266,7 +265,7 @@
           [Symbol(IncomingMessage)]: [Function: IncomingMessage],
           [Symbol(ServerResponse)]: [Function: ServerResponse],
           [Symbol(kCapture)]: false,
-          [Symbol(asyncId)]: 431
+          [Symbol(asyncId)]: 84
         },
         _asserts: [],
         _server: Server {
@@ -290,8 +289,9 @@
           [Symbol(IncomingMessage)]: [Function: IncomingMessage],
           [Symbol(ServerResponse)]: [Function: ServerResponse],
           [Symbol(kCapture)]: false,
-          [Symbol(asyncId)]: 431
+          [Symbol(asyncId)]: 84
         },
+        _data: { Food: 'Mansf2', Coutry: 'Jordan' },
         req: ClientRequest {
           _events: [Object: null prototype],
           _eventsCount: 3,
@@ -303,30 +303,32 @@
           chunkedEncoding: false,
           shouldKeepAlive: false,
           _defaultKeepAlive: true,
-          useChunkedEncodingByDefault: false,
+          useChunkedEncodingByDefault: true,
           sendDate: false,
           _removedConnection: false,
           _removedContLen: false,
           _removedTE: false,
-          _contentLength: 0,
+          _contentLength: 35,
           _hasBody: true,
           _trailer: '',
           finished: true,
           _headerSent: true,
           socket: [Socket],
           connection: [Socket],
-          _header: 'GET /food HTTP/1.1\r\n' +
-            'Host: 127.0.0.1:36235\r\n' +
+          _header: 'PUT /food/:id HTTP/1.1\r\n' +
+            'Host: 127.0.0.1:44161\r\n' +
             'Accept-Encoding: gzip, deflate\r\n' +
+            'Content-Type: application/json\r\n' +
+            'Content-Length: 35\r\n' +
             'Connection: close\r\n' +
             '\r\n',
           _keepAliveTimeout: 0,
           _onPendingData: [Function: noopPendingOutput],
           agent: [Agent],
           socketPath: undefined,
-          method: 'GET',
+          method: 'PUT',
           insecureHTTPParser: undefined,
-          path: '/food',
+          path: '/food/:id',
           _ended: true,
           res: [IncomingMessage],
           aborted: false,
@@ -343,7 +345,7 @@
           [Symbol(kOutHeaders)]: [Object: null prototype]
         },
         protocol: 'http:',
-        host: '127.0.0.1:36235',
+        host: '127.0.0.1:44161',
         _endCalled: true,
         _callback: [Function],
         _fullfilledPromise: Promise { [Circular] },
@@ -373,7 +375,7 @@
           _consuming: false,
           _dumped: false,
           req: [ClientRequest],
-          text: '[]',
+          text: '',
           [Symbol(kCapture)]: false
         },
         _resBuffered: true,
@@ -396,12 +398,12 @@
         chunkedEncoding: false,
         shouldKeepAlive: false,
         _defaultKeepAlive: true,
-        useChunkedEncodingByDefault: false,
+        useChunkedEncodingByDefault: true,
         sendDate: false,
         _removedConnection: false,
         _removedContLen: false,
         _removedTE: false,
-        _contentLength: 0,
+        _contentLength: 35,
         _hasBody: true,
         _trailer: '',
         finished: true,
@@ -426,7 +428,7 @@
           _server: null,
           parser: null,
           _httpMessage: [Circular],
-          [Symbol(asyncId)]: 434,
+          [Symbol(asyncId)]: 87,
           [Symbol(kHandle)]: [TCP],
           [Symbol(kSetNoDelay)]: true,
           [Symbol(lastWriteQueueSize)]: 0,
@@ -458,7 +460,7 @@
           _server: null,
           parser: null,
           _httpMessage: [Circular],
-          [Symbol(asyncId)]: 434,
+          [Symbol(asyncId)]: 87,
           [Symbol(kHandle)]: [TCP],
           [Symbol(kSetNoDelay)]: true,
           [Symbol(lastWriteQueueSize)]: 0,
@@ -470,9 +472,11 @@
           [Symbol(kBytesRead)]: 0,
           [Symbol(kBytesWritten)]: 0
         },
-        _header: 'GET /food HTTP/1.1\r\n' +
-          'Host: 127.0.0.1:36235\r\n' +
+        _header: 'PUT /food/:id HTTP/1.1\r\n' +
+          'Host: 127.0.0.1:44161\r\n' +
           'Accept-Encoding: gzip, deflate\r\n' +
+          'Content-Type: application/json\r\n' +
+          'Content-Length: 35\r\n' +
           'Connection: close\r\n' +
           '\r\n',
         _keepAliveTimeout: 0,
@@ -497,9 +501,9 @@
           [Symbol(kCapture)]: false
         },
         socketPath: undefined,
-        method: 'GET',
+        method: 'PUT',
         insecureHTTPParser: undefined,
-        path: '/food',
+        path: '/food/:id',
         _ended: true,
         res: IncomingMessage {
           _readableState: [ReadableState],
@@ -527,7 +531,7 @@
           _consuming: false,
           _dumped: false,
           req: [Circular],
-          text: '[]',
+          text: '',
           [Symbol(kCapture)]: false
         },
         aborted: false,
@@ -543,28 +547,28 @@
         [Symbol(corked)]: 0,
         [Symbol(kOutHeaders)]: [Object: null prototype] {
           host: [Array],
-          'accept-encoding': [Array]
+          'accept-encoding': [Array],
+          'content-type': [Array],
+          'content-length': [Array]
         }
       },
-      text: '[]',
-      body: [],
+      text: '',
+      body: '',
       files: undefined,
       buffered: true,
       headers: {
         'x-powered-by': 'Express',
         'content-type': 'application/json; charset=utf-8',
-        'content-length': '2',
-        etag: 'W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"',
-        date: 'Tue, 04 May 2021 15:51:48 GMT',
-        connection: 'close'
+        date: 'Tue, 04 May 2021 19:36:08 GMT',
+        connection: 'close',
+        'content-length': '0'
       },
       header: {
         'x-powered-by': 'Express',
         'content-type': 'application/json; charset=utf-8',
-        'content-length': '2',
-        etag: 'W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"',
-        date: 'Tue, 04 May 2021 15:51:48 GMT',
-        connection: 'close'
+        date: 'Tue, 04 May 2021 19:36:08 GMT',
+        connection: 'close',
+        'content-length': '0'
       },
       statusCode: 200,
       status: 200,
