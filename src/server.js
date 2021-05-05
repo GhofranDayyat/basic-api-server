@@ -6,13 +6,15 @@ const notFounErrorHandler = require('./error-handlers/404.js');
 const foodRouter = require('./routes/food.js');
 
 
-
 const express=require('express');
 const app = express();
 app.use(express.json());
-app.use(foodRouter); // attach  routes module to the app obj
-// app.use('/food',foodRouter); 
-// app.use('/clothes',foodRouter);
+app.use(express.urlencoded({ extended: true }));
+
+
+// app.use(foodRouter); // attach  routes module to the app obj
+app.use('/food',foodRouter);
+app.use('/clothes',foodRouter);
 
 
 

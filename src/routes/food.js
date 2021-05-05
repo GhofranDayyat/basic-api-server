@@ -4,7 +4,6 @@ const express=require('express');
 const router = express.Router();
 
 const logger = require('../middleware/logger.js');
-const validat = require('../middleware/validator.js');
 
 
 router.use(logger); //not working after the routs
@@ -15,11 +14,11 @@ const newFoods= new Food;
 
 // add routs
 
-router.get('/food',getFood);
-router.get('/food/:id',getOneMeal);
-router.post('/food',creatMeal);
-router.put('/food/:id',updatFood);
-router.delete('/food/:id',deletFood);
+router.get('/',getFood);
+router.get('/:id',getOneMeal);
+router.post('/',creatMeal);
+router.put('/:id',updatFood);
+router.delete('/:id',deletFood);
 
 function getFood(req,res){
 //show all food in mokeDb
@@ -55,8 +54,8 @@ function deletFood(req,res){
   let id = parseFloat(req.params.id);
   let deletedFood = newFoods.delete(id);
   let msg =deletedFood?'Delete this Food':'can not Delete this Recored';
-  // let deletStatus= deletedFood?202:204; //deleted done : can's deleted
-  res.status(202).json({
+  let deletStatus= deletedFood?202:204; //deleted done : can's deleted
+  res.status(deletStatus).json({
     msg:msg,
     checkDelete:deletedFood
   });
