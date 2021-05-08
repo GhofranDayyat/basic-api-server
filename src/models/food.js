@@ -8,7 +8,6 @@ class Food{
   get(id){
     if(id){
 
-      console.log(this.mokeDb[0].id, id,'modle from');
       return this.mokeDb.find(recored=>recored.id==id); //3 = can't return all element 
     }else{
       return this.mokeDb;
@@ -23,7 +22,6 @@ class Food{
       recored:obj ///
     };
     this.mokeDb.push(recored);
-    console.log('oooo',recored);
     return recored;
   }
 

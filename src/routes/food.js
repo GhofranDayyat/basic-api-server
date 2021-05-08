@@ -35,7 +35,6 @@ router.get('/:id', getOneMeal)
 function getFood (req,res){
 //show all food in mokeDb
   let newModel= newModels.get();
-  console.log(newModel,);
   res.status(200).json(newModel);
 
 }
