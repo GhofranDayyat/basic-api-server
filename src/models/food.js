@@ -8,7 +8,7 @@ class Food{
   get(id){
     if(id){
 
-      return this.mokeDb.find(recored=>recored.id==id); //3 = can't return all element 
+      return this.mokeDb.find(recored=>recored.id==id); //3 = can't return all element
     }else{
       return this.mokeDb;
     }
