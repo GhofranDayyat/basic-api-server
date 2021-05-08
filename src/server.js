@@ -3,19 +3,22 @@ require('dotenv').config();
 
 const errorHandler = require('./error-handlers/500.js');
 const notFounErrorHandler = require('./error-handlers/404.js');
-const foodRouter = require('./routes/food.js');
+
+const Routers = require('./routes/food.js');
+const router = Routers.router;
+const checking = Routers.checkingEndPoint;
 
 
 const express=require('express');
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); //add the body to the req object
+// app.use(express.urlencoded({ extended: true }));
 
 
 // app.use(foodRouter); // attach  routes module to the app obj
-app.use('/food',foodRouter);
-app.use('/clothes',foodRouter);
-
+app.use(checking);// attach the checking midlwear to determin which rout should contenue next//should be befor the routs below
+app.use('/food',router);
+app.use('/clothes',router);
 
 
 

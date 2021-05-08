@@ -7,7 +7,8 @@ class Food{
   }
   get(id){
     if(id){
-      return this.mokeDb.find(recored=>recored.id==id);
+
+      return this.mokeDb.find(recored=>recored.id==id); //3 = can't return all element 
     }else{
       return this.mokeDb;
     }
@@ -28,7 +29,7 @@ class Food{
 
   update(id,obj){
     for (let i = 0; i < this.mokeDb.length; i++) {
-      if(this.mokeDb[i].id==id){
+      if(this.mokeDb[i].id===id){
         this.mokeDb[i].recored=obj;
         return this.mokeDb[i];
       }
@@ -39,7 +40,7 @@ class Food{
   delete(id) {
     let checkDelete=false;
     this.mokeDb=this.mokeDb.filter((obj)=>{
-      if(obj.id!=id){
+      if(obj.id!==id){
         return true;
       }else{
         checkDelete=true;
@@ -49,8 +50,16 @@ class Food{
     return checkDelete;
   }
 }
+class Clothes extends Food{
+
+}
+
+module.exports={
+  Food,
+  Clothes,
+};
 
 
-module.exports=Food;
+
 
 
