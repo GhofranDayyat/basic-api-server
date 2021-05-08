@@ -1,110 +1,90 @@
-'use strict'
 
+
+
+'use strict';
 
 const server = require('../src/server.js');
-//mock server
+
 const superTest = require('supertest');
 const mockServer = superTest(server.app);
-let obj1 = {'Food':'Mansf','Coutry':'Jordan'}
-let obj2 = {'Food':'kabsa','Coutry':'KSA'}
-describe('Tisting server Api',()=>{
-   it('Create a record using POST',async ()=>{
-    let res = await mockServer.post('/food').send(obj1);
-    res=await mockServer.post('/food').send(obj2)
-    expect(res.body.recored).toEqual(obj2)
-    expect(res.status).toEqual(201)
+// two object to test them
+const testObj1 = {"meal": "salad", "type": "vegetarian"};
+const testObj2 = {"meal": "tona", "type": "fish"};
+
+describe('Check REST status and Returned data', () =>{
+    it('Create a recored using POST', async () => {
+        let resPostFood = await mockServer.post('/food').send(testObj1);
+        resPostFood = await mockServer.post('/food').send(testObj2);
+
+        let resPostClothes = await mockServer.post('/clothes').send(testObj1);
+        resPostClothes = await mockServer.post('/clothes').send(testObj2);
+        // test POST /food route
+        expect(resPostFood.body.recored).toEqual(testObj2)
+        expect(resPostFood.status).toEqual(201)
+        // test POST /clothes route
+        expect(resPostClothes.body.recored).toEqual(testObj2)
+        expect(resPostClothes.status).toEqual(201)
+        
     })
 
-    it('Read a list of records using GET',async ()=>{
-        let res = await mockServer.get('/food')
+    it('Read a list of recoreds using GET', async () => {
+        let resGetAllFood = await mockServer.get('/food')
+        let resGetAllClothes = await mockServer.get('/clothes')
+        // test GET  /food route
+        expect(resGetAllFood.body[0].recored).toEqual(testObj1)
+        expect(resGetAllFood.body[1].recored).toEqual(testObj2)
+        expect(resGetAllFood.status).toEqual(200)
+        // test GET /clothes route
+        expect(resGetAllClothes.body[0].recored).toEqual(testObj1)
+        expect(resGetAllClothes.body[1].recored).toEqual(testObj2)
+        expect(resGetAllClothes.status).toEqual(200)
+        console.log('from get clothes', resGetAllClothes.body );
+    })
 
-        // console.log(res.body[0].recored)
-        // console.log(res.body[1].recored)
-        // console.log(res.body[2].recored)
+    it('Read a recored using GET', async () => {
+        let resGetOneFood = await mockServer.get('/food/2')
+        let resGetOneClothes = await mockServer.get('/clothes/2')
+        // test GET one /food route
+        expect(resGetOneFood.body.recored).toEqual(testObj2)
+        expect(resGetOneFood.status).toEqual(200)
+        // test GET one /clothes route
+        expect(resGetOneClothes.body.recored).toEqual(testObj2)
+        expect(resGetOneClothes.status).toEqual(200)
+    })
 
-        expect(res.body[0].recored).toEqual(obj1)
-        expect(res.body[1].recored).toEqual(obj2)
-        expect(res.status).toEqual(200)
-        })
+    it('Update a recored using PUT', async () => {
+        const updatedObj = {"meal": "chicken", "type": "Meat"}
 
+        let resUpdateFood = await mockServer.put('/food/1').send(updatedObj)
+        let resUpdateClothes = await mockServer.put('/clothes/1').send(updatedObj)
 
-    //     it('Read a list of records using GET',async ()=>{
-    //         let res = await mockServer.get('/food/1')
-    //         expect(res.body.recored).toEqual(obj1)
-    //         expect(res.status).toEqual(200)
-    //         })
+        // test PUT  /food route
+        expect(resUpdateFood.body.recored).toEqual(updatedObj)
+        // test PUT one /clothes route
+        expect(resUpdateClothes.body.recored).toEqual(updatedObj)
+    })
 
+    it('Delete a recored using DELETE', async () => {
+        // test DELETE /food route
+        // test if route is exist
+        let resDeleteFood = await mockServer.delete('/food/2')
+        expect(resDeleteFood.body.checkDelete.checkDelete).toEqual(true)
+        expect(resDeleteFood.status).toEqual(202)
+        // test if route does not exist
+        resDeleteFood = await mockServer.delete('/food/22')
+        expect(resDeleteFood.body.checkDelete).toEqual(false)
+        expect(resDeleteFood.status).toEqual(204)
 
-    //     obj1={'Food':'Mansf2','Coutry':'Jordan2'}
-    //     it('Update a record using PUT',async ()=>{
-    //             let res =await mockServer.put('/food/1').send(obj1)
-    //             console.log(res.body.recored)
-    //             expect(res.body.recored).toEqual(obj1)
-    //             expect(res.status).toEqual(200)
-    //         })
-
-
-    //         it('Destroy a record using DELETE',async ()=>{
-    //             let res =await mockServer.delete('/food/1')
-    //             console.log(res.body.checkDelete,res.status)
-    //             expect(res.body.checkDelete).toEqual(true)
-    //             expect(res.status).toEqual(202)
-    //              res =await mockServer.delete('/food/111')
-    //             console.log(res.body.checkDelete,res.status)
-    //             expect(res.body.checkDelete).toEqual(undefined)
-    //             expect(res.status).toEqual(204)
-    //         })
-        
-
-            let clothes1 = {'Food':'Coat','color':'red'}
-            let clothes2 = {'Food':'dress','color':'blue'}
-            //Testing clothes endpoint
-            it('Create a record using POST',async ()=>{
-                let res = await mockServer.post('/clothes').send(clothes1);
-                res=await mockServer.post('/clothes').send(clothes2)
-                expect(res.body.recored).toEqual(clothes2)
-                expect(res.status).toEqual(201)
-           
-                })
-            
-                it('Read a list of records using GET',async ()=>{
-                    let res = await mockServer.get('/clothes')
-                    expect(res.body[2].recored).toEqual(clothes1)
-                    expect(res.body[3].recored).toEqual(clothes2)
-                    expect(res.status).toEqual(200)
-                    console.log(res.body[0].recored)
-                    console.log(res.body[1].recored)
-                    console.log(res.body[2].recored)
-                    console.log(res.body[3].recored)
-
-                    })
-            
-            
-                    it('Read a list of records using GET',async ()=>{
-                        let res = await mockServer.get('/clothes/3')
-                        expect(res.body.recored).toEqual(clothes1)
-                        expect(res.status).toEqual(200)
-                        })
-            
-            
-                        clothes2={'clothes':'dress','color':'yellow'}
-                    it('Update a record using PUT',async ()=>{
-                            let res =await mockServer.put('/clothes/3').send(clothes1)
-                            console.log(res.body.recored)
-                            expect(res.body.recored).toEqual(clothes1)
-                            expect(res.status).toEqual(200)
-                        })
-            
-            
-                        it('Destroy a record using DELETE',async ()=>{
-                            let res =await mockServer.delete('/clothes/3')
-                            console.log(res.body.checkDelete,res.status)
-                            expect(res.body.checkDelete).toEqual(true)
-                            expect(res.status).toEqual(202)
-                             res =await mockServer.delete('/clothes/111')
-                            console.log(res.body.checkDelete,res.status)
-                            expect(res.body.checkDelete).toEqual(undefined)
-                            expect(res.status).toEqual(204)
-                        })
-                    
+        // test DELETE /clothes route
+        // test if route is exist
+        let resDeleteClothes = await mockServer.delete('/clothes/1')
+        // console.log('from delete clothes', resDeleteClothes.body);
+        expect(resDeleteClothes.body.checkDelete).toEqual(true)
+        expect(resDeleteClothes.status).toEqual(202)
+        // test if route does not exist
+        resDeleteClothes = await mockServer.delete('/clothes/44')
+        console.log('from delete clothes', resDeleteClothes.body);
+        expect(resDeleteClothes.body.checkDelete).toEqual(false)
+        expect(resDeleteClothes.status).toEqual(204)
+    })
 })
