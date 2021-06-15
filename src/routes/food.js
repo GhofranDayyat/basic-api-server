@@ -30,7 +30,7 @@ router.post('/',creatMeal);
 router.put('/:id',updatFood);
 router.delete('/:id',deletFood);
 
-router.get('/:id', getOneMeal)
+router.get('/:id', getOneMeal);
 
 function getFood (req,res){
 //show all food in mokeDb
