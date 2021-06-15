@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage --verbose",
-    "start":"node index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/GhofranDayyat/basic-api-server#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1"
   },

@@ -1,5 +1,6 @@
 'use strict';
 require('dotenv').config();
+var cors = require('cors');
 
 const errorHandler = require('./error-handlers/500.js');
 const notFounErrorHandler = require('./error-handlers/404.js');
@@ -11,6 +12,7 @@ const checking = Routers.checkingEndPoint;
 
 const express=require('express');
 const app = express();
+app.use(cors());
 app.use(express.json()); //add the body to the req object
 // app.use(express.urlencoded({ extended: true }));
 
